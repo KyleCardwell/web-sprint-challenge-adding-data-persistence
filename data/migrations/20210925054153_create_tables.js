@@ -22,32 +22,32 @@ exports.up = function(knex) {
             .unsigned()
             .references('project_id')
             .inTable('projects')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE');
+            .onDelete('RESTRICT')
+            .onUpdate('RESTRICT');
 
     })
     .createTable('project_resources', table => {
-        table.increments('proj_res_id');
+        table.increments('project_resources_id');
         table
             .integer('task_id')
             .unsigned()
             .references('task_id')
             .inTable('tasks')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE');
+            .onDelete('RESTRICT')
+            .onUpdate('RESTRICT');
         table
             .integer('resource_id')
             .unsigned()
             .references('resource_id')
             .inTable('resources')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE');
+            .onDelete('RESTRICT')
+            .onUpdate('RESTRICT');
     })
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('proj_res_id')
+    .dropTableIfExists('project_resources')
     .dropTableIfExists('tasks')
     .dropTableIfExists('resources')
     .dropTableIfExists('projects');
