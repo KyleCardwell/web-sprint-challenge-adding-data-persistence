@@ -23,16 +23,17 @@ exports.up = function(knex) {
             .references('project_id')
             .inTable('projects')
             .onDelete('RESTRICT')
-            .onUpdate('RESTRICT');
+            .onUpdate('RESTRICT')
+            .notNullable();
 
     })
     .createTable('project_resources', table => {
         table.increments('project_resources_id');
         table
-            .integer('task_id')
+            .integer('project_id')
             .unsigned()
-            .references('task_id')
-            .inTable('tasks')
+            .references('project_id')
+            .inTable('projects')
             .onDelete('RESTRICT')
             .onUpdate('RESTRICT');
         table
